@@ -1,4 +1,4 @@
-from typing import Sequence, TypeVar
+from typing import Sequence
 from app.database import async_session, Base
 from sqlalchemy import delete, select
 
