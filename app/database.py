@@ -1,17 +1,17 @@
-from  pydantic_settings  import BaseSettings, SettingsConfigDict
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+from sqlalchemy.orm import DeclarativeBase
+from app.config import settings
 
-class Settings(BaseSettings):
-    DB_HOST: str = "localhost"
-    DB_PORT: int = 5432
-    DB_NAME: str = "name"
-    DB_USER: str = "username"
-    DB_PASS: str = "password"
-    
-    @property
-    def DATABASE_URL(self):
-        return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+engine = create_async_engine(
+    url=settings.DATABASE_URL,
+    echo=False,  # при true позволяет видеть все запросы в консоли
+    # pool_size=5, # кол-во подключений к бд
+    # max_overflow=10, # доп. слоты для подключения
+)
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+async_session = async_sessionmaker(
+    bind=engine, class_=AsyncSession, expire_on_commit=False
+)
 
-
-settings = Settings()
+class Base(DeclarativeBase):
+    pass
