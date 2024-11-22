@@ -25,6 +25,7 @@ class BaseDAO:
             result = await session.execute(query)
             return result.scalar_one_or_none()
 
+        
     @classmethod
     async def add(cls, **data):
         async with async_session() as session:
@@ -35,9 +36,9 @@ class BaseDAO:
         
         
     @classmethod
-    async def update(cls, todo_id: int, **data):
+    async def update(cls, book_id: int, **data):
         async with async_session() as session:
-            updated  = await cls.get_id(todo_id)
+            updated  = await cls.get_id(book_id)
             if updated is None:
                 return None
             for key, value in data.items():
