@@ -9,7 +9,7 @@ class Book(Base):
     __tablename__ = "books"
     
     id: Mapped[intpk]
-    title: Mapped[str]  = mapped_column(index=True)
+    title: Mapped[str] = mapped_column(index=True)
     author: Mapped[str]
     year: Mapped[int]
     status: Mapped[str]

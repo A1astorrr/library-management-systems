@@ -2,11 +2,10 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from sqlalchemy.orm import DeclarativeBase
 from app.config import settings
 
+# Создание асинхронного движка базы данных
 engine = create_async_engine(
     url=settings.DATABASE_URL,
-    echo=False,  # при true позволяет видеть все запросы в консоли
-    # pool_size=5, # кол-во подключений к бд
-    # max_overflow=10, # доп. слоты для подключения
+    echo=False,
 )
 
 async_session = async_sessionmaker(
@@ -14,4 +13,5 @@ async_session = async_sessionmaker(
 )
 
 class Base(DeclarativeBase):
+    """Базовый класс для моделей SQLAlchemy."""
     pass

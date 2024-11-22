@@ -1,25 +1,22 @@
 from fastapi import HTTPException, status
-
 from fastapi import HTTPException, status
 
 
 BookNotCreated = HTTPException(
     status_code=status.HTTP_404_NOT_FOUND,
-    detail="Ошибка в создание записи",
+    detail="Ошибка в создание книги.",
 )
 
 BookNotUpdate = HTTPException(
     status_code=status.HTTP_404_NOT_FOUND,
-    detail="Запись не обновлена",
+    detail="Книга не найдена.",
+)
+
+BookNotSearch = HTTPException(
+    status_code=status.HTTP_400_BAD_REQUEST,
+    detail="Необходимо указать хотя бы один параметр поиска.",
 )
 
 NotDeletedById = HTTPException(
-    status_code=status.HTTP_404_NOT_FOUND, detail="Запись  не найден"
+    status_code=status.HTTP_404_NOT_FOUND, detail="Книга не найдена."
 )
-
-
-BookUpdated = HTTPException(
-    status_code=status.HTTP_202_ACCEPTED, detail="Запись обновлена"
-)
-
-BookDeleted = HTTPException(status_code=status.HTTP_200_OK, detail="Запись удалена")
