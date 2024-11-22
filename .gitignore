@@ -1,0 +1,17 @@
+#python stuff
+venv/
+.pylintrc
+__pycache__/
+
+#ide stuff
+.vscode
+.idea
+
+#db stuff
+.notes.db
+
+#tailwind ignore
+node_modules/
+
+#alembic stuff
+.env
